@@ -12,7 +12,7 @@ const InputField = ({ name, type = "text", placeholder, value, onChange, require
             name={name}
             type={type}
             placeholder={placeholder}
-            className="w-full p-3 bg-white border outline-none  border-gray-200 rounded-xl  transition-all duration-300 ease-in-out shadow-sm hover:shadow-md placeholder-gray-500 placeholder-opacity-70"
+            className="w-full p-3 bg-white border outline-none border-gray-200 rounded-xl transition-all duration-300 ease-in-out shadow-sm hover:shadow-md text-black placeholder-gray-500"
             value={value}
             onChange={onChange}
             required={required}
@@ -20,12 +20,15 @@ const InputField = ({ name, type = "text", placeholder, value, onChange, require
     </div>
 );
 
+
 const SelectField = ({ name, options, value, onChange, required = false, placeholder }) => (
     <div className="flex flex-col gap-1.5">
         <select
             id={name}
             name={name}
-            className="w-full p-3 bg-white border outline-none  border-gray-200 rounded-xl  transition-all duration-300 ease-in-out shadow-sm hover:shadow-md appearance-none text-gray-500"
+            className={`w-full p-3 bg-white border outline-none border-gray-200 rounded-xl transition-all duration-300 ease-in-out shadow-sm hover:shadow-md appearance-none ${
+                value ? "text-black" : "text-gray-500"
+            }`}
             value={value}
             onChange={onChange}
             required={required}
@@ -39,13 +42,14 @@ const SelectField = ({ name, options, value, onChange, required = false, placeho
 );
 
 
+
 const PhoneField = ({ name, value, onChange, required = false }) => (
     <div className="flex flex-col gap-1.5">
         <PhoneInput
             country={'in'}
             value={value}
             onChange={(phone) => onChange({ target: { name, value: phone } })}
-            inputClass="!w-full !pl-12 !h-12 !bg-white !border !outline-none !border-gray-200 !rounded-xl transition-all duration-300 ease-in-out !shadow-sm hover:!shadow-md !placeholder-gray-500 !placeholder-opacity-70 !text-gray-900"
+            inputClass="!w-full !pl-12 !h-12 !bg-white !border !outline-none !border-gray-200 !rounded-xl transition-all duration-300 ease-in-out !shadow-sm hover:!shadow-md !text-black !placeholder-gray-500"
             buttonClass="!bg-white !border !border-gray-200 !rounded-l-xl !h-12 !w-12 !flex !items-center !justify-center"
             containerClass="relative"
             inputProps={{
@@ -57,6 +61,7 @@ const PhoneField = ({ name, value, onChange, required = false }) => (
         />
     </div>
 );
+
 
 export default function EnhancedLeadForm() {
     const [formData, setFormData] = useState({});
@@ -156,12 +161,6 @@ export default function EnhancedLeadForm() {
         }
 
 
-        // setTimeout(() => {
-        //     console.log(formData);
-        //     alert("Form submitted successfully!");
-        //     setFormData({});
-        //     setIsSubmitting(false);
-        // }, 1000);
     };
 
 
@@ -180,15 +179,14 @@ export default function EnhancedLeadForm() {
         try {
             const response = await axios.get(`https://2factor.in/API/V1/${API_KEY}/SMS/VERIFY/${sessionId}/${otp}`);
             if (response.data.Status === 'Success' && response.data.Details === 'OTP Matched') {
-                // Create lead in Zoho CRM
-                
-                // await fetch("https://cors-anywhere.herokuapp.com/https://script.google.com/macros/s/AKfycbx6umiwSsdl5kCSYsrQiABD2SMJEVp4iSXn-mgbFndRbsRTxy19AVdelLKbPe6UrSR3/exec", {
-                //     method: "POST",
-                //     headers: {
-                //       "Content-Type": "application/json",
-                //     },
-                //     body: JSON.stringify(formData),
-                // });
+                await fetch("https://script.google.com/macros/s/AKfycbx6umiwSsdl5kCSYsrQiABD2SMJEVp4iSXn-mgbFndRbsRTxy19AVdelLKbPe6UrSR3/exec", {
+                    method: "POST",
+                    mode: 'no-cors',
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formData),
+                });
                 toast.success('Registration Successful!');
                   
 
@@ -230,10 +228,10 @@ export default function EnhancedLeadForm() {
     };
 
     return (
-        <div id="book-a-call" className="min-h-screen bg-white flex flex-col items-center justify-center p-6 font-sans">
+        <div id="book-a-call" className="min-h-screen bg-white flex flex-col items-center justify-center p-4 md:p-6 font-sans">
             <div className="w-full max-w-7xl grid md:grid-cols-2 gap-12 items-start">
                 {/* Form Section */}
-                <div className="bg-white p-10 rounded-2xl w-full shadow-xl flex flex-col gap-6 relative overflow-hidden transform transition-all duration-500 hover:shadow-2xl">
+                <div className="bg-white p-4 md:p-10 rounded-2xl w-full shadow-xl flex flex-col gap-6 relative overflow-hidden transform transition-all duration-500 hover:shadow-2xl">
                     <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-gray-100 to-gray-200 rounded-bl-full opacity-10"></div>
                     <h2 className="text-4xl font-extrabold text-center text-gray-900 tracking-tight">Let's Grow Your Revenue</h2>
                     <p className="text-gray-600 text-center text-lg">Schedule your free consultation with our experts.</p>
@@ -382,7 +380,7 @@ export default function EnhancedLeadForm() {
                 </div>
 
                 {/* Content Section */}
-                <div className="p-10">
+                <div className="md:p-10">
                     <h3 className="text-4xl font-extrabold text-gray-900 mb-8 tracking-tight">
                         See How We Can Get You{" "}
                         <span className="relative inline-block">
