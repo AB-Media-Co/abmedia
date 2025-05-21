@@ -1,4 +1,5 @@
 import './App.css'
+import Footer from './Component/Footer'
 import Header from './Component/Header'
 import LeadForm from './Component/LeadForm'
 import StrategyStepsSection from './Component/StrategyStepsSection'
@@ -12,6 +13,7 @@ function App() {
      <LeadForm/>
      <TrustedBySection/>
      <StrategyStepsSection/>
+     <Footer/>
     </>
   )
 }

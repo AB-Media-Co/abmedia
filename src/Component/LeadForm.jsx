@@ -230,7 +230,7 @@ export default function EnhancedLeadForm() {
     };
 
     return (
-        <div id="book-a-call" className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-6 font-sans">
+        <div id="book-a-call" className="min-h-screen bg-white flex flex-col items-center justify-center p-6 font-sans">
             <div className="w-full max-w-7xl grid md:grid-cols-2 gap-12 items-start">
                 {/* Form Section */}
                 <div className="bg-white p-10 rounded-2xl w-full shadow-xl flex flex-col gap-6 relative overflow-hidden transform transition-all duration-500 hover:shadow-2xl">
