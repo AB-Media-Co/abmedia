@@ -3,6 +3,7 @@ import 'react-phone-input-2/lib/style.css';
 import PhoneInput from 'react-phone-input-2';
 import axios from "axios";
 import { Toaster, toast } from 'react-hot-toast';
+import Select from 'react-select';
 
 // Reusable Components
 const InputField = ({ name, type = "text", placeholder, value, onChange, required = false }) => (
@@ -26,9 +27,8 @@ const SelectField = ({ name, options, value, onChange, required = false, placeho
         <select
             id={name}
             name={name}
-            className={`w-full p-3 bg-white border outline-none border-gray-200 rounded-xl transition-all duration-300 ease-in-out shadow-sm hover:shadow-md appearance-none ${
-                value ? "text-black" : "text-gray-500"
-            }`}
+            className={`w-full p-3 bg-white border outline-none border-gray-200 rounded-xl transition-all duration-300 ease-in-out shadow-sm hover:shadow-md appearance-none ${value ? "text-black" : "text-gray-500"
+                }`}
             value={value}
             onChange={onChange}
             required={required}
@@ -79,12 +79,13 @@ export default function EnhancedLeadForm() {
         heading: "See How We Can Get You More Revenue",
         servicesLine: "SEO | Content Marketing | Paid Media | CRO | Email | Social Media | Analytics | Programmatic | Strategy",
         points: [
-            { title: "SEO", desc: "unlock massive amounts of SEO traffic." },
-            { title: "Content Marketing", desc: "epic content that gets shared." },
-            { title: "Paid Media", desc: "effective strategies with clear ROI." },
-            { title: "Email Marketing", desc: "engagement and sales from your list." },
-            { title: "CRO", desc: "maximize website conversions and ROI." },
             { title: "Strategy", desc: "orchestrate a marketing plan." },
+            { title: "Paid Media", desc: "effective strategies with clear ROI." },
+            { title: "SEO", desc: "unlock massive amounts of SEO traffic." },
+            { title: "CRO", desc: "maximize website conversions and ROI." },
+            { title: "Video Production", desc: "Create engaging videos that boost conversions." },
+            { title: "Content Marketing", desc: "epic content that gets shared." },
+            { title: "Email & Whatsapp Marketing", desc: "engagement and sales from your list." },
         ]
     };
 
@@ -109,7 +110,7 @@ export default function EnhancedLeadForm() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                 );
-            case "Email Marketing":
+            case "Email & Whatsapp Marketing":
                 return (
                     <svg xmlns="http://www.w3.org/2000/svg" className={iconProps} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -121,6 +122,13 @@ export default function EnhancedLeadForm() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                     </svg>
                 );
+            case "Video Production":
+                return (
+                    <svg xmlns="http://www.w3.org/2000/svg" className={iconProps} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14m-6 4h-2a2 2 0 01-2-2V8a2 2 0 012-2h2m6 0v12m-6 0V6m6 0H9m0 12h6" />
+                    </svg>
+                );
+
             case "Strategy":
                 return (
                     <svg xmlns="http://www.w3.org/2000/svg" className={iconProps} fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -183,12 +191,12 @@ export default function EnhancedLeadForm() {
                     method: "POST",
                     mode: 'no-cors',
                     headers: {
-                      "Content-Type": "application/json",
+                        "Content-Type": "application/json",
                     },
                     body: JSON.stringify(formData),
                 });
                 toast.success('Registration Successful!');
-                  
+
 
                 setRegistrationSuccess(true);
                 setOtp('');
@@ -248,17 +256,18 @@ export default function EnhancedLeadForm() {
                             required
                             placeholder="Select monthly marketing budget"
                             options={[
-                                { value: "<750", label: "Under $750" },
-                                { value: "750-1500", label: "$750 to $1,500" },
-                                { value: "1500-5000", label: "$1,500 to $5,000" },
-                                { value: "5000-10000", label: "$5,000 to $10,000" },
-                                { value: "10000-25000", label: "$10,000 to $25,000" },
-                                { value: "25000-50000", label: "$25,000 to $50,000" },
-                                { value: "50000-100000", label: "$50,000 to $100,000" },
-                                { value: ">100000", label: "Above $100,000" },
+                                { value: "<75000", label: "Under ₹75,000" },
+                                { value: "75000-150000", label: "₹75,000 to ₹1,50,000" },
+                                { value: "150000-500000", label: "₹1,50,000 to ₹5,00,000" },
+                                { value: "500000-1000000", label: "₹5,00,000 to ₹10,00,000" },
+                                { value: "1000000-2500000", label: "₹10,00,000 to ₹25,00,000" },
+                                { value: "2500000-5000000", label: "₹25,00,000 to ₹50,00,000" },
+                                { value: "5000000-10000000", label: "₹50,00,000 to ₹1,00,00,000" },
+                                { value: ">10000000", label: "Above ₹1 Crore" }
                             ]}
+
                         />
-                        <SelectField
+                        {/* <SelectField
                             name="teamSize"
                             value={formData.teamSize || ""}
                             onChange={handleChange}
@@ -271,7 +280,33 @@ export default function EnhancedLeadForm() {
                                 { value: "6-10", label: "6–10 people" },
                                 { value: "10+", label: "10+ people" },
                             ]}
-                        />
+                        /> */}
+
+                        <div className="sm:col-span-1">
+                            <Select
+                                isMulti
+                                name="services"
+                                options={[
+                                    { value: "Strategy", label: "Strategy" },
+                                    { value: "Paid Media", label: "Paid Media" },
+                                    { value: "SEO", label: "SEO" },
+                                    { value: "CRO", label: "CRO" },
+                                    { value: "Video Production", label: "Video Production" },
+                                    { value: "Content Marketing", label: "Content Marketing" },
+                                    { value: "Email & Whatsapp Marketing", label: "Email & Whatsapp Marketing" },
+                                ]}
+                                className="basic-multi-select w-full  bg-white border outline-none border-gray-200 rounded-xl transition-all duration-300 ease-in-out shadow-sm hover:shadow-md appearance-none "
+                                classNamePrefix="select"
+                                value={formData.services || []}
+                                onChange={(selectedOptions) =>
+                                    setFormData((prev) => ({
+                                        ...prev,
+                                        services: selectedOptions,
+                                    }))
+                                }
+                            />
+                        </div>
+
                         <SelectField
                             name="territory"
                             value={formData.territory || ""}

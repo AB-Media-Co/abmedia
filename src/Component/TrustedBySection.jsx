@@ -33,7 +33,7 @@ export default function TrustedBySection() {
     <section className="py-16 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 text-center">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-12">
-          Join Over 5,000 Companies <br />
+          Join Over 500 Companies <br />
           from Small Business to Enterprise
         </h2>
 

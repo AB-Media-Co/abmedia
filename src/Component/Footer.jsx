@@ -11,8 +11,7 @@ export default function Footer() {
                     {/* Logo + Overview */}
                     <div className="md:font-medium leading-relaxed">
 
-                        A full service performance marketing agency in Gurugram, New Delhi, India. We have launched 50+ brands, captured 119k+ leads, and generated 137 million+ combined revenue for more than 50+ companies globally in the last 7 years.
-                    </div>
+                        A full service performance marketing agency in Gurugram, New Delhi, India.                </div>
 
                     {/* Locations */}
                     <div className="space-y-3 ">
